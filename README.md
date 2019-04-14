@@ -16,7 +16,6 @@ Used for register and login
 }
 ```
 ---
----
 
 Used for Posting a Message
 ```js
@@ -26,7 +25,6 @@ Used for Posting a Message
   "timeInOrbit": INTEGER
 }
 ```
----
 ---
 
 ### Users
