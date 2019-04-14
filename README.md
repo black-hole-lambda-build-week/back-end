@@ -1,15 +1,35 @@
-# **Black Hole Back End**
+# ** Back End - Black Hole**
+---
+
+---
+
+## What is Black Hole?
+#### Sometimes, you just need to vent to get it out, move on, and feel better.  Enter black hole. The reverse note taking app where everything you type automatically gets dumped in the trash. 
+#### Research shows writing things down helps your brain move past the thought and onto bigger and brighter things. Don’t let the fear of other people reading what you write stop you from reaping these benefits! 
+#### Driver cut you off? Frustrated with the hour long wait time at a restaurant? Type out your response, hit submit, and it’s absorbed into the black hole so you can move on with your life. 
 
 
 
 
-
-
+Used for register and login
 ```js
 {
+  "username": "userName",
+  "password": "password"
 }
 ```
+---
 
+---
+
+Used for Posting a Message
+```js
+{
+  "title": "title",
+  "message": "message",
+  "timeInOrbit": INTEGER
+}
+```
 
 ### Users
 
@@ -30,6 +50,6 @@
 ### Posting a Message - Protected
 | Method | URL                | Description                                                                                                                                                                      |
 | ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| POST   | /orbit             | Inserts payload into the orbit database which enables it to be viewed at a later time.                                                                                           |
+| POST   | /orbit             | Inserts payload into the orbit database which enables it to be viewed at a later time. ID will autogenerate.                                                                                          |
 | PUT    | /orbit/:id         | Allows users to update message.                                                                                                                                                  |
 | DELETE | /blackhole         | Immediately deletes payload.                                                                                                                                                     |
