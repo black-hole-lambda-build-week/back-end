@@ -12,7 +12,7 @@ module.exports = server => {
   server.post("/login", login);
   server.get("/logout", logout);
   server.get("/users", users, restricted);
-  server.post("/orbit", messages, restricted);
+  server.get("/users/:id", usersId, restricted);
 };
 
 //----- Post Router for Register -----//
@@ -89,6 +89,20 @@ function only(username) {
       res.status(403).json({ message: "Yo! Youre not suppose to be here!" });
     }
   };
+}
+
+// --------- Get USERS by ID ------------- //
+function usersId(req, res) {
+  const usersId = req.params.id;
+  db("users")
+    .where({ id: usersId })
+    .first()
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
 }
 
 // --------- Post Message ------------- //
