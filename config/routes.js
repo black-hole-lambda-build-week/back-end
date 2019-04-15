@@ -117,7 +117,6 @@ function message(req, res) {
     .catch(err => res.status(500).json(err));
 }
 
-// --------- GET Message by Id ------------ //
 function messages(req, res) {
   db('messages')
     .then(messages => {
