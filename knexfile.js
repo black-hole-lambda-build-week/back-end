@@ -1,43 +1,33 @@
+require('dotenv').config();
+
+const pg = require('pg');
+
+pg.defaults.ssl = true;
+
 module.exports = {
   development: {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
       filename: './users.db3'
-    }
-  },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
     },
     migrations: {
-      directory: './database/migrations',
-      tableName: 'dbmigrations'
+      directory: './database/migrations'
     },
     seeds: { directory: './seeds' }
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password'
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      tableName: 'knex_migrations',
+      directory: './database/migrations'
+    },
+    seeds: { directory: './seeds' }
   }
 };
