@@ -11,3 +11,11 @@ server.use(express.json());
 
 configureRoutes(server);
 module.exports = server;
+
+server.get('/', (req, res) => {
+  res.send(
+    'Server is alive! GET all users: /users , POST: /register , /login '
+  );
+});
+
+module.exports = server;
