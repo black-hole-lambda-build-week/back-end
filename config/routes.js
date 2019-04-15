@@ -13,8 +13,8 @@ module.exports = server => {
   server.get('/users', users, restricted);
   server.get('/users/:id', usersId, restricted);
   server.post('/login', login);
-  server.post('/messages', message, restricted);
-  server.get('/messages/', messages, restricted);
+  server.post('/orbit', message, restricted);
+  server.get('/orbit', messages, restricted);
 };
 
 // ----- Post Router for Register ----- //
