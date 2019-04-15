@@ -8,13 +8,16 @@ const secret = require("../auth/secrets").jwtKey;
 const Users = require("../auth/authenticate");
 
 module.exports = server => {
-  server.post("/register", register);
-  server.get("/logout", logout);
-  server.get("/users", users, restricted);
-  server.get("/users/:id", usersId, restricted);
-  server.post("/login", login);
-  server.post("/messages", message, restricted);
-  server.get("/messages/", messages, restricted);
+  server.post("/register", register); // Register
+  server.get("/logout", logout); // Logout
+  server.get("/users", users, restricted); // Get All Users
+  server.get("/users/:id", usersId, restricted); //Get User by ID
+  server.post("/login", login); // Login
+  server.post("/orbit", message, restricted); // Post Message
+  server.get("/orbit", messages, restricted); // Get all Messages
+  server.get("/orbit/:id", messagesId, restricted); // Get Message by Specific ID
+  server.post("/orbit/:id", updateMessage, restricted); // Update Messages
+  server.delete("/orbit/:id", deleteMessage, restricted); // Delete Messages
 };
 
 // ----- Post Router for Register ----- //
@@ -117,13 +120,57 @@ function message(req, res) {
     .catch(err => res.status(500).json(err));
 }
 
-// --------- GET Message by Id ------------ //
+// ------ GET all Messages ------//
 function messages(req, res) {
   db("messages")
     .then(messages => {
       res.status(200).json(messages);
     })
     .catch(err => res.status(500).json(err));
+}
+
+// --------- GET Message by Id ------------ //
+function messagesId(req, res) {
+  const messagesId = req.params.id;
+  db("messages")
+    .where({ id: messagesId })
+    .first()
+    .then(message => {
+      res.status(200).json(message);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+}
+
+//------- Update Message by ID ------//
+function updateMessage(req, res) {
+  const changes = req.body;
+  const { id } = req.params.id;
+  db("messages")
+    .where({ id: id })
+    .update(changes)
+    .then(message => {
+      res.status(200).json(message);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+}
+
+//------ Delete Message by ID ------//
+function deleteMessage(req, res) {
+  const { id } = req.params;
+
+  db("messages")
+    .where({ id })
+    .del()
+    .then(message => {
+      res.status(200).json(message);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 }
 
 //---- Generate Token Function -----//
