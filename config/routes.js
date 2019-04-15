@@ -9,14 +9,15 @@ const Users = require("../auth/authenticate");
 
 module.exports = server => {
   server.post("/register", register);
-  server.post("/login", login);
   server.get("/logout", logout);
   server.get("/users", users, restricted);
   server.get("/users/:id", usersId, restricted);
+  server.post("/login", login);
+  server.post("/messages", message, restricted);
+  server.get("/messages/", messages, restricted);
 };
 
-//----- Post Router for Register -----//
-
+// ----- Post Router for Register ----- //
 function register(req, res) {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
@@ -106,18 +107,23 @@ function usersId(req, res) {
 }
 
 // --------- Post Message ------------- //
-function messages(req, res) {
-  const body = req.body;
-  db("messages")
-    .insert(body)
+function message(req, res) {
+  const messages = req.body;
+  db.insert(messages)
+    .into("messages")
     .then(ids => {
       res.status(201).json(ids);
     })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: "Sorry, there was an issue adding your message..." });
-    });
+    .catch(err => res.status(500).json(err));
+}
+
+// --------- GET Message by Id ------------ //
+function messages(req, res) {
+  db("messages")
+    .then(messages => {
+      res.status(200).json(messages);
+    })
+    .catch(err => res.status(500).json(err));
 }
 
 //---- Generate Token Function -----//
