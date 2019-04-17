@@ -20,7 +20,6 @@ Used for register and login
 Used for Posting a Message
 ```js
 {
-  "title": "title",
   "message": "message",
   "timeInOrbit": INTEGER
 }
@@ -39,13 +38,14 @@ Used for Posting a Message
 
 ---
 
----
-
-### The following routes are protected. Provide token returned from successful `register` or `login` as `Authorization` header
+### The following routes are protected. Provide token returned from successful `register` or `login` as `Authorization` header.
 
 ### Posting a Message - Protected
 | Method | URL                | Description                                                                                                                                                                      |
 | ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| POST   | /orbit             | Inserts payload into the orbit database which enables it to be viewed at a later time. ID will autogenerate.                                                                                          |
+| GET    | /orbit             | Returns an array of objects containing all messages.                                                                                                                             |
+| GET    | /orbit/:id         | Returns specific message by particular ID.                                                                                                                                       |
+| POST   | /orbit             | Inserts payload into the orbit database which enables it to be viewed at a later time. ID will autogenerate.                                                                     |
 | PUT    | /orbit/:id         | Allows users to update message.                                                                                                                                                  |
-| DELETE | /blackhole         | Immediately deletes payload.                                                                                                                                                     |
+| DELETE | /orbit/:id         | Immediately deletes payload.                                                                                                                                                     |
+|
