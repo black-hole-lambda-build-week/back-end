@@ -6,7 +6,8 @@
 #### Research shows writing things down helps your brain move past the thought and onto bigger and brighter things. Don’t let the fear of other people reading what you write stop you from reaping these benefits! 
 #### Driver cut you off? Frustrated with the hour long wait time at a restaurant? Type out your response, hit submit, and it’s absorbed into the black hole so you can move on with your life. 
 
-
+---
+Heroku Deployment Link : ` https://blackhole-app.herokuapp.com/ `
 
 Used for register and login
 ```js
