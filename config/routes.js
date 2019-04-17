@@ -134,7 +134,7 @@ function message(req, res) {
   db.insert(messages)
     .into('messages')
     .then(ids => {
-      res.status(201).json([messages.messages, ids[0]]);
+      res.status(201).json([messages.message, ids[0]]);
     })
     .catch(err => res.status(500).json(err));
 }
