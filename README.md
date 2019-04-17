@@ -23,7 +23,8 @@ Used for Posting a Message
 ```js
 {
   "message": "message",
-  "timeInOrbit": INTEGER
+  "timeInOrbit": INTEGER,
+  "expirationDate": "2019-04-17 12:00:00"
 }
 ```
 ---
