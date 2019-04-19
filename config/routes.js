@@ -14,11 +14,10 @@ module.exports = server => {
   server.get('/users/:id', usersId, restricted); //Get User by ID
   server.post('/login', login); // Login
   server.post('/orbit', message, restricted); // Post Message
-  server.get('/orbit', messages, restricted); // Get all Messages
   server.get('/orbit/:id', messagesId, restricted); // Get Message by Specific ID
   server.put('/orbit/:id', updateMessage, restricted); // Update Messages
   server.delete('/orbit/:id', deleteMessage, restricted); // Delete Messages
-  server.get('/orbit/users/:id', getUserMessages, restricted);
+  server.get('/orbit/users/:id', getUserMessages, restricted); // get's messages for specific users
 };
 
 // ----- Post Router for Register ----- //
@@ -142,16 +141,6 @@ function message(req, res) {
           messages.expirationDate,
           messages.numberOfDays
         ]);
-    })
-    .catch(err => res.status(500).json(err));
-}
-
-// ------ GET all Messages ------//
-function messages(req, res) {
-  db('messages')
-    .then(messages => {
-      console.log(messages);
-      res.status(200).json(messages);
     })
     .catch(err => res.status(500).json(err));
 }
