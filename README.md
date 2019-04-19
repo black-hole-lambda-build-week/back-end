@@ -45,8 +45,7 @@ Used for Posting a Message
 
 ### Posting a Message - Protected
 | Method | URL                | Description                                                                                                                                                                      |
-| ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GET    | /orbit             | Returns an array of objects containing all messages.                                                                                                                             |
+| ------ | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|                                                                                                                         |
 | GET    | /orbit/:id         | Returns specific message by particular ID.                                                                                                                                       |
 | POST   | /orbit             | Inserts payload into the orbit database which enables it to be viewed at a later time. ID will autogenerate.                                                                     |
 | PUT    | /orbit/:id         | Allows users to update message.                                                                                                                                                  |
