@@ -18,6 +18,7 @@ module.exports = server => {
   server.put('/orbit/:id', updateMessage, restricted); // Update Messages
   server.delete('/orbit/:id', deleteMessage, restricted); // Delete Messages
   server.get('/orbit/users/:id', getUserMessages, restricted); // get's messages for specific users
+  server.get('/orbit', messages, restricted);
 };
 
 // ----- Post Router for Register ----- //
@@ -125,6 +126,16 @@ function usersId(req, res) {
     .catch(error => {
       res.status(500).json(error);
     });
+}
+
+// ------ GET Message ------//
+function messages(req, res) {
+  db('messages')
+    .then(messages => {
+      console.log(messages);
+      res.status(200).json(messages);
+    })
+    .catch(err => res.status(500).json(err));
 }
 
 // --------- Post Message ------------- //
